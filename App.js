@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default function App() {
   const [name,setName]=useState('Anil');
+  const [val,setVal]=useState('');
   const [people,setPeople]=useState({name:'mario',age:20});
   const handleClick=()=>{
     setName(name=='Anil'?'Ansooman':'Anil');
@@ -15,12 +16,20 @@ export default function App() {
         <Text style={styles.boldText}>
         Hello {name}!
         </Text>
-        <Text >
+        
+        {/* <Text >
         His name is {people.name} ans his age is {people.age}
         </Text>
-        
+         */}
       </View>
-      <TextInput style={styles.input}/>
+      <Text>
+          Enter Name:{val}
+        </Text>
+      <TextInput 
+        style={styles.input}
+        placeholder='e.g Anil'
+        onChangeText={(val)=>setVal(val)}
+      />
       <View style={styles.buttonContainer}>
         <Button onPress={handleClick} title='Update name'/>
       </View>
