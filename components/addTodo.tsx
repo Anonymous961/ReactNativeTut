@@ -16,7 +16,10 @@ const AddTodo = ({submitHandler}:any) => {
             <Button
                 title='Add Todo'
                 color='coral'
-                onPress={()=>submitHandler(text)}
+                onPress={()=>{
+                    submitHandler(text);
+                    setText('');
+                }}
             />
         </View>
      );
