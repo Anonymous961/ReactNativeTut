@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView,FlatList, TouchableOpacity } from 'react-native';
 import Header from './components/header';
 import Todos from './components/todo';
+import AddTodo from './components/addTodo';
 
 export default function App() {
   const [todos,setTodos]=useState([
@@ -16,11 +17,16 @@ export default function App() {
       return todos.filter(todo=>todo.key!=key)
     })
   }
+  const submitHandler=(text)=>{
+    setTodos((prevTodo)=>{
+      return [{text:text,key:Math.random().toString()},...prevTodo];
+    })
+  }
   return (
     <View style={styles.container}>
       <Header/>
       <View style={styles.content}>
-        {/* {to form} */}
+        <AddTodo submitHandler={submitHandler}/>
         <View style={styles.list}>
           <FlatList
             data={todos}
