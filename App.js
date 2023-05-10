@@ -1,49 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
 
 export default function App() {
-  const [name,setName]=useState('Anil');
-  const [val,setVal]=useState('');
-  const [age,setAge]=useState();
-  const [people,setPeople]=useState({name:'mario',age:20});
-  const handleClick=()=>{
-    setName(name=='Anil'?'Ansooman':'Anil');
-    setPeople(people.name=="mario"?{name:"luigi",age:21}:{name:'mario',age:20})
-  }
+  const [people,setPeople]=useState([
+    {name:'mario',key:1},
+    {name:'Anil',key:2},
+    {name:'Shaun',key:3},
+    {name:'Luigi',key:4},
+    {name:'tiger',key:5},
+    {name:'Ansooman',key:6},
+    {name:'Anubhab',key:7},
+    {name:'Sritam',key:8},
+    {name:'Nitin',key:9},
+    {name:'Santosh',key:10},
+  ]);
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.boldText}>
-        Hello {name}!
-        </Text>
-        
-        {/* <Text >
-        His name is {people.name} ans his age is {people.age}
-        </Text>
-         */}
-      </View>
-      <Text>
-          Enter Name:{val}
-        </Text>
-      <TextInput
-      multiline 
-        style={styles.input}
-        placeholder='e.g Anil'
-        onChangeText={(val)=>setVal(val)}
-      />
-      <Text>
-          Enter age:{age}
-      </Text>
-      <TextInput 
-        keyboardType='numeric'
-        style={styles.input}
-        placeholder='e.g 69'
-        onChangeText={(val)=>setAge(val)}
-      />
-      <View style={styles.buttonContainer}>
-        <Button onPress={handleClick} title='Update name'/>
-      </View>
+      <ScrollView>
+        {people.map(item=>
+          <View key={item.key}>
+            <Text style={styles.item}>{item.name}</Text>
+          </View>
+        )}
+      </ScrollView>
     </View>
   );
 }
@@ -52,8 +32,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop:50,
+    paddingHorizontal: 20,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  item:{
+    marginTop:30,
+    backgroundColor:"pink",
+    fontSize:24,
+    padding:30
   },
   input:{
     borderWidth: 1,
