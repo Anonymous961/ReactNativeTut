@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Keyboard,FlatList, TouchableOpacity,Alert,Touch
 import Header from './components/header';
 import Todos from './components/todo';
 import AddTodo from './components/addTodo';
+import Sandbox from './components/sanbox';
 
 export default function App() {
   const [todos,setTodos]=useState([
@@ -29,6 +30,7 @@ export default function App() {
     }
   }
   return (
+    // <Sandbox/>
     <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
       <View style={styles.container}>
         <Header/>
@@ -57,12 +59,17 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
   content:{
-    padding:40
+    padding:40,
+    // backgroundColor:'pink',
+    flex:1
   },
   list:{
+    flex:1,
     marginTop:20,
+    
   },
   boldText:{
-    fontWeight: "bold"
+    fontWeight: "bold",
+    
   },
 });
