@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView,FlatList, TouchableOpacity,Alert } from 'react-native';
+import { StyleSheet, Text, View, Keyboard,FlatList, TouchableOpacity,Alert,TouchableWithoutFeedback } from 'react-native';
 import Header from './components/header';
 import Todos from './components/todo';
 import AddTodo from './components/addTodo';
@@ -29,20 +29,22 @@ export default function App() {
     }
   }
   return (
-    <View style={styles.container}>
-      <Header/>
-      <View style={styles.content}>
-        <AddTodo submitHandler={submitHandler}/>
-        <View style={styles.list}>
-          <FlatList
-            data={todos}
-            renderItem={({item})=>(
-              <Todos item={item} pressHandler={pressHandler}/>
-            )}
-          />
+    <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <Header/>
+        <View style={styles.content}>
+          <AddTodo submitHandler={submitHandler}/>
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              renderItem={({item})=>(
+                <Todos item={item} pressHandler={pressHandler}/>
+              )}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
